@@ -29,8 +29,9 @@ jobs:
 
       - name: Create and push release branch to repository
         run: |
-          git remote -v
-          #git config --local ....something that sets the token
+          GIT_USER=mparticle-bot
+          GIT_PASS=${{ secrets.MP_INTEGRATIONS_SEMANTIC_RELEASE_BOT }}
+          git config --local credential.helper "!f() { echo \"username=${GIT_USER}\\npassword=${GIT_PASS}\"; }; f"
           git checkout -b release/${{ github.run_number }}
           git push origin release/${{ github.run_number }}
 
