@@ -29,6 +29,8 @@ jobs:
 
       - name: Create and push release branch to repository
         run: |
+          git remote -v
+          #git config --local ....something that sets the token
           git checkout -b release/${{ github.run_number }}
           git push origin release/${{ github.run_number }}
 
